@@ -1,0 +1,17 @@
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editor
+.idea/
+.vscode/
+*.swp
+
+# Secrets (하위 폴더 gitignore 에도 있지만 이중 안전장치)
+.env
+*.env
+!*.env.example
+secrets/
+
+# (frontend/, backend/ 각자의 .gitignore 가 세부 항목을 처리합니다)

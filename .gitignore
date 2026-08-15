@@ -6,6 +6,7 @@ desktop.ini
 # Editor
 .idea/
 .vscode/
+.vs/
 *.swp
 
 # Secrets (하위 폴더 gitignore 에도 있지만 이중 안전장치)

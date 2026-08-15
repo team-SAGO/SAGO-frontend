@@ -1,11 +1,11 @@
 import { useNavigate } from 'react-router-dom'
-import backChevron from '../assets/profile-settings/back-chevron.svg'
+import backChevron from '@/assets/profile-settings/back-chevron.svg'
 
 type BackButtonProps = {
   to?: string
 }
 
-function BackButton({ to }: BackButtonProps) {
+export function BackButton({ to }: BackButtonProps) {
   const navigate = useNavigate()
 
   return (

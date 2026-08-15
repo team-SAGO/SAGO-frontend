@@ -1,8 +1,8 @@
-import battery from '../assets/network-error/battery.svg'
-import cellular from '../assets/network-error/cellular.svg'
-import statusWifi from '../assets/network-error/wifi-status.svg'
+import battery from '@/assets/network-error/battery.svg'
+import cellular from '@/assets/network-error/cellular.svg'
+import statusWifi from '@/assets/network-error/wifi-status.svg'
 
-function StatusBar() {
+export function StatusBar() {
   return (
     <div aria-hidden="true" className="absolute inset-x-0 top-0 z-30 h-[7.323%] text-black">
       <span className="absolute left-[14.925%] top-[37.5%] -translate-x-1/2 text-[clamp(15px,4.23cqw,17px)] font-bold leading-none tracking-[-0.4px]">

@@ -29,7 +29,7 @@ function ProfileIcon() {
   )
 }
 
-function BottomNavigation({ current }: BottomNavigationProps) {
+export function BottomNavigation({ current }: BottomNavigationProps) {
   const navigate = useNavigate()
 
   const items = [

@@ -6,7 +6,7 @@ type MobileScreenProps = {
   labelledBy?: string
 }
 
-function MobileScreen({ children, label, labelledBy }: MobileScreenProps) {
+export function MobileScreen({ children, label, labelledBy }: MobileScreenProps) {
   return (
     <main className="flex min-h-[100svh] items-start justify-center overflow-hidden bg-[#f2f2f3] sm:items-center">
       <section

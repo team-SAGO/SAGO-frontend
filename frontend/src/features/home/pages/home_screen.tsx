@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { APP_COLORS, APP_RADIUS, APP_TYPOGRAPHY } from '@/core/theme';
+import { useNavigate } from 'react-router-dom';
 import {
   AccidentCard,
   type AccidentStatus,
@@ -9,8 +9,6 @@ import {
   type TabType,
 } from '@/common/components';
 import { AccidentStartButton } from '@/features/home/components/accident_start_button';
-
-// 에셋 임포트
 import homeBackground from '@/assets/home_background.svg';
 import logoApple from '@/assets/auth/logo_apple.svg';
 import logoText from '@/assets/auth/logo_text.svg';
@@ -24,6 +22,7 @@ interface AccidentItem {
 }
 
 export const HomeScreen: React.FC = () => {
+  const navigate = useNavigate();
   const [currentTab, setCurrentTab] = useState<TabType>('home');
   const [hasUnreadNotification, setHasUnreadNotification] = useState<boolean>(true);
 
@@ -33,7 +32,7 @@ export const HomeScreen: React.FC = () => {
       date: '2026.07.15(수) 14:15',
       title: '경미한 단독 사고',
       location: '서울 광진구 군자로 123',
-      status: '처리중',
+      status: '처리 중',
     },
     {
       id: '2',
@@ -45,158 +44,60 @@ export const HomeScreen: React.FC = () => {
   ];
 
   return (
-    <div
-      style={{
-        width: '100%',
-        //maxWidth: 402,
-        height: '100vh',
-        maxHeight: '100dvh',
-        margin: '0 auto',
-        backgroundColor: '#FFFFFF',
-        display: 'flex',
-        flexDirection: 'column',
-        position: 'relative',
-        overflow: 'hidden',
-        fontFamily: APP_TYPOGRAPHY.fontFamily.pretendard,
-      }}
-    >
-      {/* 스크롤 가능한 메인 컨텐츠 영역 */}
-      <div
-        style={{
-          flex: 1,
-          overflowY: 'auto',
-          display: 'flex',
-          flexDirection: 'column',
-        }}
-      >
+    <div className="w-full max-w-full h-[100dvh] mx-auto bg-white flex flex-col relative overflow-x-hidden overflow-y-hidden font-pretendard box-border">
+      <div className="flex-1 min-h-0 w-full overflow-y-auto overflow-x-hidden relative flex flex-col box-border">
         <img
-            src={homeBackground}
-            alt=""
-            style={{
-              position: 'auto',
-              top: 0,
-              left: 0,
-              width: '100%',
-              height: '100%',
-              objectFit: 'cover',
-              objectPosition: 'top center',
-              zIndex: 0,
-              pointerEvents: 'none',
-            }}
-          />
-        {/* 상단 로고 및 인사말 영역 */}
-        <div
-          style={{
-            paddingTop: 62, // 상단 여백 62px
-            paddingBottom: 80, // 하얀색 카드와 겹치기 위한 하단 여유 공간
-            paddingLeft: 20,
-            paddingRight: 20,
-            position: 'relative',
-          }}
-        >
-          {/* 헤더 (SAGO 타이틀 & 알림 버튼) */}
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+          src={homeBackground}
+          alt=""
+          className="absolute top-0 left-0 w-full h-full object-cover object-top z-0"
+        />
+
+        <div className="pt-10 pb-16 px-5 relative shrink-0 z-1 box-border">
+          <div className="flex justify-between items-center">
             <img
               src={logoText}
               alt="SAGO"
-              style={{ height: 32, objectFit: 'contain' }}
+              className="h-7 object-contain"
             />
+
             <NotificationButton
               hasUnread={hasUnreadNotification}
               onClick={() => setHasUnreadNotification(false)}
             />
           </div>
 
-          {/* 환영 문구 */}
-          <div style={{ marginTop: '24px' }}>
-            <h2
-              style={{
-                margin: '0 0 4px 0',
-                fontSize: 22,
-                fontWeight: 700,
-                color: APP_COLORS.gray[900],
-                fontFamily: APP_TYPOGRAPHY.fontFamily.pretendard,
-              }}
-            >
+          <div className="mt-5">
+            <h2 className="m-0 mb-1 text-lg font-bold text-gray-900 font-pretendard">
               안녕하세요, OOO님!
             </h2>
-            <p
-              style={{
-                margin: 0,
-                fontSize: 14,
-                color: APP_COLORS.gray[600],
-                fontFamily: APP_TYPOGRAPHY.fontFamily.pretendard,
-              }}
-            >
+
+            <p className="m-0 text-xs text-gray-600 font-pretendard">
               오늘도 안전한 하루 되세요.
             </p>
           </div>
 
-          {/* 우측 하단 사과 캐릭터 로고 배치 */}
-          <div
-            style={{
-              position: 'absolute',
-              right: 0,
-              bottom: 8,
-              width: 120,
-              height: 120,
-              pointerEvents: 'none', // 터치 이벤트 방해 금지
-            }}
-          >
+          <div className="absolute right-0 bottom-[-8px] w-38 h-38 pointer-events-none overflow-hidden">
             <img
               src={logoApple}
               alt="사과 캐릭터"
-              style={{
-                width: '100%',
-                height: '100%',
-                //objectFit: 'contain',
-              }}
+              className="w-full h-full object-contain"
             />
           </div>
         </div>
 
-        {/* 하단 전체를 감싸는 하얀색 둥근 사각형 영역 */}
-        <div
-          style={{
-            flex: 1,
-            backgroundColor: '#FFFFFF',
-            borderTopLeftRadius: 34,
-            borderTopRightRadius: 34,
-            marginTop: -32, // 상단 배경과 자연스럽게 겹치도록 음수 마진 적용
-            padding: '34px 30px 32px 30px',
-            display: 'flex',
-            flexDirection: 'column',
-            gap: '24px',
-            position: 'relative',
-            zIndex: 2,
-            boxShadow: '0 -4px 16px rgba(0, 0, 0, 0.04)',
-          }}
-        >
-          {/* 최근 사고 섹션 */}
+        <div className="flex-1 min-h-0 w-full bg-white rounded-t-[28px] -mt-7 pt-7 px-7 pb-6 flex flex-col gap-5 relative z-2 shadow-[0_-4px_16px_rgba(0,0,0,0.04)] box-border overflow-x-hidden">
           <div>
-            <div
-              style={{
-                display: 'flex',
-                justifyContent: 'space-between',
-                alignItems: 'center',
-                marginBottom: '12px',
-              }}
-            >
-              <h3
-                style={{
-                  margin: 0,
-                  fontSize: 18,
-                  fontWeight: 700,
-                  color: APP_COLORS.gray[900],
-                  fontFamily: APP_TYPOGRAPHY.fontFamily.pretendard,
-                }}
-              >
+            <div className="flex justify-between items-center mb-2.5">
+              <h3 className="m-0 text-sm font-bold text-gray-900 font-pretendard">
                 최근 사고
               </h3>
-              <ArrowButton onClick={() => console.log('전체 보기 클릭')} />
+
+              <ArrowButton
+                onClick={() => navigate('/accident/history')}
+              />
             </div>
 
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+            <div className="flex flex-col gap-2.5 w-full">
               {recentAccidents.map((accident) => (
                 <AccidentCard
                   key={accident.id}
@@ -204,28 +105,26 @@ export const HomeScreen: React.FC = () => {
                   title={accident.title}
                   location={accident.location}
                   status={accident.status}
+                  showArrow={false}
                   onClick={() => console.log(`${accident.title} 클릭됨`)}
                 />
               ))}
             </div>
           </div>
 
-          {/* 사고 대응 시작 컴포넌트 */}
-          <AccidentStartButton onClick={() => console.log('사고 대응 시작 클릭')} />
+          <div>
+            <AccidentStartButton
+              onClick={() => navigate('/accident/info')}
+            />
+          </div>
         </div>
       </div>
 
-      {/* 하단 탭바 영역 */}
-      <div
-        style={{
-          flexShrink: 0,
-          backgroundColor: '#FFFFFF',
-          borderTop: `1px solid ${APP_COLORS.gray[200]}`,
-          //paddingBottom: 34, // 하단 여백 34px 
-          zIndex: 10,
-        }}
-      >
-        <BottomTabBar currentTab={currentTab} onTabChange={setCurrentTab} />
+      <div className="shrink-0 w-full bg-white border-t border-gray-200 z-10 box-border overflow-x-hidden">
+        <BottomTabBar
+          currentTab={currentTab}
+          onTabChange={setCurrentTab}
+        />
       </div>
     </div>
   );

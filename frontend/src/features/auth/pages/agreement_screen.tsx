@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import { Button, Checkbox } from '@/common/components'; // 💡 경로 수정 완료
-import { APP_COLORS, APP_RADIUS, APP_TYPOGRAPHY } from '@/core/theme';
+import { useNavigate } from 'react-router-dom';
+import { Button, Checkbox } from '@/common/components';
 import SAGOlogo from '@/assets/SAGO_logo.svg';
+import { ScreenLayout } from '@/common/layout/ScreenLayout';
 
 export const AgreementScreen: React.FC = () => {
   // 약관 동의 상태
@@ -9,169 +10,96 @@ export const AgreementScreen: React.FC = () => {
   const [isOptionalAgreed, setIsOptionalAgreed] = useState(false);
 
   // 체크박스 2개가 모두 true일 때만 전체 동의 완료
-  const isAllAgreed = isRequiredAgreed && isOptionalAgreed;
+  const isAllAgreed = isRequiredAgreed;
+  const navigate = useNavigate();
 
   const handlePrev = () => {
     console.log('이전 화면으로 이동');
+    navigate(-1);
   };
 
   const handleNext = () => {
     if (!isAllAgreed) return;
     console.log('다음 화면으로 이동');
+    navigate('/signup');
   };
 
-  const titleTypo = APP_TYPOGRAPHY.body.medium16;
-  const labelTypo = APP_TYPOGRAPHY.body.regular16;
+  // 하단 고정 버튼 영역 정의
+  const footerButtons = (
+    <div className="flex gap-2 w-full">
+      <Button
+        variant="outline"
+        size="lg"
+        onClick={handlePrev}
+        className="flex-1 h-[42px]"
+      >
+        이전
+      </Button>
+
+      <Button
+        variant="secondary"
+        size="lg"
+        onClick={handleNext}
+        disabled={!isAllAgreed}
+        className="flex-1 h-[42px]"
+      >
+        다음
+      </Button>
+    </div>
+  );
 
   return (
-    <div
-      style={{
-        width: '100%',
-        minHeight: '100vh',
-        maxWidth: 440,
-        margin: '0 auto',
-        display: 'flex',
-        flexDirection: 'column',
-        backgroundColor: APP_COLORS.primary[100],
-        fontFamily: APP_TYPOGRAPHY.fontFamily.pretendard,
-        padding: '24px 24px 40px',
-        boxSizing: 'border-box',
-      }}
-    >
-      {/* 상단 SAGO 로고 */}
-      <div
-        style={{
-          display: 'flex',
-          justifyContent: 'center',
-          marginTop: 40,
-          marginBottom: 36,
-        }}
-      >
+    <ScreenLayout footer={footerButtons}>
+      <div className="flex justify-center mt-[48px] mb-[36px]">
         <img
           src={SAGOlogo}
           alt="SAGO"
-          style={{
-            height: 32,
-            width: 'auto',
-          }}
+          className="h-8 w-auto"
         />
       </div>
 
       {/* 타이틀 */}
-      <h1
-        style={{
-          fontSize: titleTypo.fontSize,
-          fontWeight: Number(titleTypo.fontWeight),
-          letterSpacing: `${titleTypo.letterSpacing}px`,
-          color: APP_COLORS.gray[900],
-          marginBottom: 20,
-        }}
-      >
-        서비스 약관에 동의해주세요 .
+      <h1 className="text-md font-semibold text-gray-900 mb-1">
+        서비스 약관에 동의해주세요.
       </h1>
 
       {/* 약관 목록 영역 */}
-      <div style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
+      <div className="flex flex-col gap-4">
         {/* 필수 약관 */}
         <div>
-          <div
-            style={{
-              height: 130,
-              border: `1px solid ${APP_COLORS.gray[400]}`,
-              borderRadius: APP_RADIUS.lg,
-              padding: 16,
-              overflowY: 'auto',
-              backgroundColor: APP_COLORS.primary[100],
-              marginBottom: 12,
-            }}
-          >
+          <div className="h-[130px] border border-gray-300 rounded-lg p-4 overflow-y-auto bg-primary-100 mb-2">
             {/* 약관 상세 내용 위치 */}
           </div>
 
           <label
             onClick={() => setIsRequiredAgreed(!isRequiredAgreed)}
-            style={{
-              display: 'inline-flex',
-              alignItems: 'center',
-              gap: 10,
-              cursor: 'pointer',
-              userSelect: 'none',
-              fontSize: labelTypo.fontSize,
-              fontWeight: Number(labelTypo.fontWeight),
-              letterSpacing: `${labelTypo.letterSpacing}px`,
-              color: APP_COLORS.gray[900],
-            }}
+            className="inline-flex items-center gap-2 cursor-pointer select-none text-[14px] font-medium text-gray-900"
           >
-            <Checkbox checked={isRequiredAgreed} />
+            <div className="scale-90 inline-flex items-center">
+              <Checkbox checked={isRequiredAgreed} />
+            </div>
             <span>(필수) 동의합니다.</span>
           </label>
         </div>
 
         {/* 선택 약관 */}
         <div>
-          <div
-            style={{
-              height: 130,
-              border: `1px solid ${APP_COLORS.gray[400]}`,
-              borderRadius: APP_RADIUS.lg,
-              padding: 16,
-              overflowY: 'auto',
-              backgroundColor: APP_COLORS.primary[100],
-              marginBottom: 12,
-            }}
-          >
+          <div className="h-[130px] border border-gray-300 rounded-lg p-4 overflow-y-auto bg-primary-100 mb-2">
             {/* 약관 상세 내용 위치 */}
           </div>
 
           <label
             onClick={() => setIsOptionalAgreed(!isOptionalAgreed)}
-            style={{
-              display: 'inline-flex',
-              alignItems: 'center',
-              gap: 10,
-              cursor: 'pointer',
-              userSelect: 'none',
-              fontSize: labelTypo.fontSize,
-              fontWeight: Number(labelTypo.fontWeight),
-              letterSpacing: `${labelTypo.letterSpacing}px`,
-              color: APP_COLORS.gray[900],
-            }}
+            className="inline-flex items-center gap-2 cursor-pointer select-none text-[14px] font-medium text-gray-900"
           >
-            <Checkbox checked={isOptionalAgreed} />
+            <div className="scale-90 inline-flex items-center">
+              <Checkbox checked={isOptionalAgreed} />
+            </div>
             <span>(선택) 동의합니다.</span>
           </label>
         </div>
       </div>
-
-      {/* 하단 버튼 영역 */}
-      <div
-        style={{
-          marginTop: 'auto',
-          paddingTop: 40,
-          display: 'flex',
-          gap: 12,
-        }}
-      >
-        <Button
-          variant="secondary"
-          size="md"
-          onClick={handlePrev}
-          style={{ flex: 1, height: 39 }}
-        >
-          이전
-        </Button>
-
-        <Button
-          variant="primary"
-          size="md"
-          onClick={handleNext}
-          disabled={!isAllAgreed}
-          style={{ flex: 1, height: 39 }}
-        >
-          다음
-        </Button>
-      </div>
-    </div>
+    </ScreenLayout>
   );
 };
 

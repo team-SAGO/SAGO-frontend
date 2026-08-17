@@ -71,7 +71,7 @@ export const CameraFrameView: React.FC<CameraFrameViewProps> = ({
       style={{
         width: '100%',
         flex: 1,
-        maxHeight: '68vh',
+        maxHeight: '72vh',
         backgroundColor: '#FFFFFF',
         borderRadius: 18,
         border: `1px solid ${APP_COLORS.gray[200]}`,
@@ -168,16 +168,16 @@ export const CameraFrameView: React.FC<CameraFrameViewProps> = ({
             <div style={{ width: '40%' }}>
               <Button
                 variant="primary"
-                size="sm"
+                size="md"
                 fullWidth
                 onClick={onRetake}
                 style={{
                   backgroundColor: APP_COLORS.primary[400],
                   color: APP_COLORS.gray[900],
                   border: 'none',
-                  fontWeight: 700,
-                  borderRadius: 12,
-                  fontSize: '13px',
+                  //fontWeight: 700,
+                  //borderRadius: 12,
+                  //fontSize: '13px',
                 }}
               >
                 다시 촬영하기

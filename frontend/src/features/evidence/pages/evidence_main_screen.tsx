@@ -1,76 +1,16 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { APP_COLORS, APP_TYPOGRAPHY } from '@/core/theme';
-import { PageHeader } from '@/common/components/PageHeader';
-import { Button } from '@/common/components/Button/Button';
-
-import photoIcon from '@/assets/icon/photo.svg';
+import { Button } from '@/common/components';
+import { ScreenLayout } from '@/common/layout/ScreenLayout';
 import cameraIcon from '@/assets/icon/camera.svg';
 import folderIcon from '@/assets/icon/folder.svg';
-
-interface EvidenceItemButtonProps {
-  iconSrc: string;
-  label: string;
-  onClick?: () => void;
-}
-
-const EvidenceItemButton: React.FC<EvidenceItemButtonProps> = ({
-  iconSrc,
-  label,
-  onClick,
-}) => {
-  return (
-    <button
-      type="button"
-      onClick={onClick}
-      style={{
-        width: '100%',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'space-between',
-        padding: '12px 16px', // 세로 여백 감소 (12px -> 8px)
-        backgroundColor: '#FFFFFF',
-        border: `1px solid ${APP_COLORS.gray[200]}`,
-        borderRadius: 8,
-        cursor: 'pointer',
-        boxSizing: 'border-box',
-      }}
-    >
-      <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
-        {/* 파란 배경 박스를 제거하고 아이콘만 직접 배치 */}
-        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-          <img src={iconSrc} alt={label} style={{ width: 22, height: 22 }} />
-        </div>
-        <span
-          style={{
-            fontSize: 15,
-            fontWeight: 600,
-            color: APP_COLORS.gray[900],
-          }}
-        >
-          {label}
-        </span>
-      </div>
-
-      {/* 우측 화살표 아이콘 */}
-      <svg
-        width="18"
-        height="18"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke={APP_COLORS.gray[400]}
-        strokeWidth="2"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      >
-        <path d="m9 18 6-6-6-6" />
-      </svg>
-    </button>
-  );
-};
+import { SavedDocumentList } from '@/common/components/SavedDocumentList';
+// 분리된 EvidenceItemButton 컴포넌트 임포트
+import { EvidenceItemButton } from '@/common/components/Button/EvidenceItemButton';
 
 export const EvidenceMainScreen: React.FC = () => {
   const navigate = useNavigate();
+
   const handleBack = () => {
     console.log('뒤로가기 클릭');
     navigate(-1);
@@ -78,100 +18,53 @@ export const EvidenceMainScreen: React.FC = () => {
 
   const handleConfirm = () => {
     console.log('저장된 나의 정보 확인하기 클릭');
-    navigate('/evidence');
+    navigate('/evidence/documents');
   };
 
   const handleCameraClick = () => {
     navigate('/evidence/camera');
   };
+
   const handleFileUploadClick = () => {
     navigate('/evidence/upload');
   };
 
   const handleAllView = () => {
     console.log('전체 보기 클릭');
+    navigate('/evidence/documents');
+  };
+
+  const handleItemClick = (title: string) => {
+    console.log(`${title} 화살표 클릭됨`);
+    navigate('/evidence-documents/extraction-result');
   };
 
   return (
-    <div
-      style={{
-        width: '100%',
-        minHeight: '100%',
-        maxHeight: '100%',
-        backgroundColor: '#FFFFFF',
-        fontFamily: APP_TYPOGRAPHY.fontFamily.pretendard,
-        display: 'flex',
-        flexDirection: 'column',
-        boxSizing: 'border-box',
-      }}
-    >
-      {/* 상단 헤더 컴포넌트 */}
-      <div
-        style={{
-          paddingTop: 62,
-          backgroundColor: '#FFFFFF',
-          flexShrink: 0,
-        }}
-      >
-        <PageHeader title="나의 정보" onBack={handleBack} />
-      </div>
-
-      {/* 본문 스크롤 영역 */}
-      <main
-        style={{
-          flex: 1,
-          overflowY: 'auto',
-          padding: '20px 20px 0px 20px',
-          display: 'flex',
-          flexDirection: 'column',
-          gap: 20,
-          boxSizing: 'border-box',
-        }}
-      >
-        {/* 저장된 나의 정보 섹션 */}
-        <section
-          style={{
-            backgroundColor: '#FFFFFF',
-            borderRadius: 16,
-            border: `1px solid ${APP_COLORS.gray[200]}`,
-            padding: 20,
-            display: 'flex',
-            flexDirection: 'column',
-            gap: 12,
-            boxShadow: '0 4px 16px rgba(0, 0, 0, 0.04)',
-          }}
+    <ScreenLayout
+      title="나의 정보"
+      onBack={handleBack}
+      footer={
+        <Button
+          variant="secondary"
+          size="lg"
+          fullWidth
+          onClick={handleConfirm}
         >
-          <div
-            style={{
-              display: 'flex',
-              justifyContent: 'space-between',
-              alignItems: 'center',
-            }}
-          >
-            <h2
-              style={{
-                fontSize: 16,
-                fontWeight: 700,
-                color: APP_COLORS.gray[900],
-                margin: 0,
-              }}
-            >
+          저장된 나의 정보 확인하기
+        </Button>
+      }
+    >
+      <div className="font-pretendard flex flex-col gap-5">
+        {/* 저장된 나의 정보 섹션 */}
+        <section className="bg-white rounded-2xl border border-gray-300 p-5 flex flex-col gap-3 shadow-[0_4px_16px_rgba(0,0,0,0.04)]">
+          <div className="flex justify-between items-center">
+            <h2 className="text-base font-semibold text-gray-900 m-0">
               저장된 나의 정보
             </h2>
             <button
               type="button"
               onClick={handleAllView}
-              style={{
-                background: 'none',
-                border: 'none',
-                fontSize: 13,
-                color: APP_COLORS.gray[500],
-                cursor: 'pointer',
-                display: 'flex',
-                alignItems: 'center',
-                gap: 2,
-                padding: 0,
-              }}
+              className="bg-transparent border-none text-[13px] text-gray-500 cursor-pointer flex items-center gap-0.5 p-0"
             >
               전체 보기
               <svg
@@ -179,7 +72,7 @@ export const EvidenceMainScreen: React.FC = () => {
                 height="14"
                 viewBox="0 0 24 24"
                 fill="none"
-                stroke={APP_COLORS.gray[400]}
+                stroke="#9CA3AF"
                 strokeWidth="2"
                 strokeLinecap="round"
                 strokeLinejoin="round"
@@ -189,100 +82,32 @@ export const EvidenceMainScreen: React.FC = () => {
             </button>
           </div>
 
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
-            <EvidenceItemButton
-              iconSrc={photoIcon}
-              label="운전면허증"
-              onClick={() => handleItemClick('운전면허증')}
-            />
-            <EvidenceItemButton
-              iconSrc={photoIcon}
-              label="신분증 사본"
-              onClick={() => handleItemClick('신분증 사본')}
-            />
-            <EvidenceItemButton
-              iconSrc={photoIcon}
-              label="통장 사본"
-              onClick={() => handleItemClick('통장 사본')}
-            />
-            <EvidenceItemButton
-              iconSrc={photoIcon}
-              label="진단서"
-              onClick={() => handleItemClick('진단서')}
-            />
-            <EvidenceItemButton
-              iconSrc={photoIcon}
-              label="보험금 청구서"
-              onClick={() => handleItemClick('보험금 청구서')}
-            />
-          </div>
+          <SavedDocumentList onItemClick={handleItemClick} />
         </section>
 
         {/* 새로운 정보 등록 섹션 */}
-        <section
-          style={{
-            backgroundColor: '#FFFFFF',
-            borderRadius: 16,
-            border: `1px solid ${APP_COLORS.gray[200]}`,
-            padding: 20,
-            display: 'flex',
-            flexDirection: 'column',
-            gap: 12,
-            boxShadow: '0 4px 16px rgba(0, 0, 0, 0.04)',
-          }}
-        >
-          <h2
-            style={{
-              fontSize: 16,
-              fontWeight: 700,
-              color: APP_COLORS.gray[900],
-              margin: 0,
-            }}
-          >
+        <section className="bg-white rounded-2xl border border-gray-300 p-5 flex flex-col gap-3 shadow-[0_4px_16px_rgba(0,0,0,0.04)]">
+          <h2 className="text-base font-semibold text-gray-900 m-0">
             새로운 정보 등록
           </h2>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
+          <div className="flex flex-col gap-1.5">
             <EvidenceItemButton
-              iconSrc={cameraIcon}
+              icon={<img src={cameraIcon} alt="카메라 촬영" className="w-5 h-5 object-contain" />}
               label="카메라 촬영"
               onClick={handleCameraClick}
+              hasIconBg={false}
             />
 
             <EvidenceItemButton
-              iconSrc={folderIcon}
+              icon={<img src={folderIcon} alt="파일 업로드" className="w-5 h-5 object-contain" />}
               label="파일 업로드"
               onClick={handleFileUploadClick}
+              hasIconBg={false}
             />
           </div>
         </section>
-      </main>
-
-      {/* 하단 고정 버튼 컴포넌트 */}
-      <footer
-        style={{
-          flexShrink: 0,
-          width: '100%',
-          padding: '0px 20px 28px 20px',
-          backgroundColor: '#FFFFFF',
-          boxSizing: 'border-box',
-        }}
-      >
-        <Button
-          variant="secondary"
-          size="lg"
-          fullWidth
-          onClick={handleConfirm}
-          style={{
-            backgroundColor: APP_COLORS.secondary[400],
-            color: APP_COLORS.gray[900],
-            border: 'none',
-            fontWeight: 700,
-          }}
-        >
-          저장된 나의 정보 확인하기
-        </Button>
-      </footer>
-    </div>
+      </div>
+    </ScreenLayout>
   );
 };
 

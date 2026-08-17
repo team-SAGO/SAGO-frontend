@@ -1,143 +1,81 @@
 import React from 'react';
-import { APP_COLORS, APP_TYPOGRAPHY } from '@/core/theme';
-import { PageHeader } from '@/common/components/PageHeader';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { Button } from '@/common/components/Button/Button';
+import { ScreenLayout } from '@/common/layout/ScreenLayout';
 
 export const FilmingTaggingScreen: React.FC = () => {
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  // 💡 이전 화면(FilmingCameraScreen)에서 전달받은 이미지 데이터 추출
+  const passedImage = (location.state as { capturedImage?: string })?.capturedImage;
+  const displayImage = passedImage || 'https://images.unsplash.com/photo-1506521781263-d8422e82f27a?auto=format&fit=crop&w=800&q=80';
+
   const handleBack = () => {
-    console.log('뒤로가기 클릭');
+    navigate(-1);
   };
 
   const handleRetake = () => {
     console.log('다시 촬영하기 클릭');
+    navigate(-1); // 다시 촬영하기 누르면 카메라 화면으로 이동
   };
 
   const handleNext = () => {
     console.log('다음 클릭');
+    navigate('/evidence');
   };
 
   return (
-    <div
-      style={{
-        width: '100%',
-        height: '100vh',
-        maxHeight: '100dvh',
-        backgroundColor: '#FFFFFF',
-        fontFamily: APP_TYPOGRAPHY.fontFamily.pretendard,
-        display: 'flex',
-        flexDirection: 'column',
-        boxSizing: 'border-box',
-        overflow: 'hidden',
-      }}
-    >
-      {/* 상단 헤더 컴포넌트 */}
-      <div
-        style={{
-          paddingTop: 62,
-          backgroundColor: '#FFFFFF',
-          flexShrink: 0,
-        }}
-      >
-        <PageHeader title="태깅 결과 확인 및 저장" onBack={handleBack} />
-      </div>
-
-      {/* 본문 영역 */}
-      <main
-        style={{
-          flex: 1,
-          overflow: 'hidden',
-          padding: '10px 32px',
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'space-evenly',
-          boxSizing: 'border-box',
-        }}
-      >
-        {/* 하얀색 프레임 컨테이너 */}
-        <div
-          style={{
-            width: '100%',
-            flex: 1,
-            maxHeight: '68vh',
-            backgroundColor: '#FFFFFF',
-            borderRadius: 18,
-            border: `1px solid ${APP_COLORS.gray[200]}`,
-            boxShadow: '0 8px 24px rgba(0, 0, 0, 0.06)',
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-            justifyContent: 'space-between',
-            padding: '14px',
-            boxSizing: 'border-box',
-            position: 'relative',
-            overflow: 'hidden',
-          }}
+    <ScreenLayout
+      title="태깅 결과 확인 및 저장"
+      backgroundColor="#FFFFFF"
+      onBack={handleBack}
+      footer={
+        <Button
+          variant="secondary"
+          size="lg"
+          fullWidth
+          onClick={handleNext}
         >
+          다음
+        </Button>
+      }
+    >
+      {/* 본문 영역: 카메라 화면과 동일한 상단 밀착 및 간격 설정 */}
+      <div className="flex-1 flex flex-col items-center justify-start gap-3 box-border pt-1">
+        {/* 하얀색 프레임 컨테이너 (카메라 화면과 동일하게 max-h-[68vh] 및 패딩 맞춤) */}
+        <div className="w-full flex-1 max-h-[72vh] bg-white rounded-[18px] border border-gray-300 shadow-[0_8px_24px_rgba(0,0,0,0.06)] flex flex-col items-center justify-between p-3.5 box-border relative overflow-hidden">
           {/* 태깅 결과 이미지 뷰어 영역 */}
-          <div
-            style={{
-              width: '100%',
-              flex: 1,
-              borderRadius: 14,
-              position: 'relative',
-              overflow: 'hidden',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              backgroundColor: '#000000',
-            }}
-          >
+          <div className="w-full flex-1 rounded-[14px] relative overflow-hidden flex items-center justify-center bg-black">
             <img
-              src="https://images.unsplash.com/photo-1506521781263-d8422e82f27a?auto=format&fit=crop&w=800&q=80"
+              src={displayImage}
               alt="태깅된 사고 현장"
-              style={{
-                width: '100%',
-                height: '100%',
-                objectFit: 'cover',
-              }}
+              className="w-full h-full object-cover"
             />
 
             {/* 태깅 라벨 시각화 오버레이 */}
-            <div style={{ position: 'absolute', top: '15%', left: '35%', padding: '3px 8px', backgroundColor: 'rgba(46, 204, 113, 0.85)', color: '#FFFFFF', fontSize: 11, fontWeight: 700, borderRadius: 4, border: '2px solid #27ae60' }}>
+            <div className="absolute top-[15%] left-[35%] py-[3px] px-2 bg-[rgba(46,204,113,0.85)] text-white text-[11px] font-bold rounded border-2 border-[#27ae60]">
               신호등
             </div>
-            <div style={{ position: 'absolute', top: '22%', right: '15%', padding: '3px 8px', backgroundColor: 'rgba(52, 152, 219, 0.85)', color: '#FFFFFF', fontSize: 11, fontWeight: 700, borderRadius: 4, border: '2px solid #2980b9' }}>
+            <div className="absolute top-[22%] right-[15%] py-[3px] px-2 bg-[rgba(52,152,219,0.85)] text-white text-[11px] font-bold rounded border-2 border-[#2980b9]">
               도로 표지판
             </div>
-            <div style={{ position: 'absolute', bottom: '28%', left: '15%', padding: '3px 8px', backgroundColor: 'rgba(155, 89, 182, 0.85)', color: '#FFFFFF', fontSize: 11, fontWeight: 700, borderRadius: 4, border: '2px solid #8e44ad' }}>
+            <div className="absolute bottom-[28%] left-[15%] py-[3px] px-2 bg-[rgba(155,89,182,0.85)] text-white text-[11px] font-bold rounded border-2 border-[#8e44ad]">
               상대 차량
             </div>
-            <div style={{ position: 'absolute', bottom: '22%', right: '15%', padding: '3px 8px', backgroundColor: 'rgba(231, 76, 60, 0.85)', color: '#FFFFFF', fontSize: 11, fontWeight: 700, borderRadius: 4, border: '2px solid #c0392b' }}>
+            <div className="absolute bottom-[22%] right-[15%] py-[3px] px-2 bg-[rgba(231,76,60,0.85)] text-white text-[11px] font-bold rounded border-2 border-[#c0392b]">
               사고 차량
             </div>
           </div>
 
           {/* 하단 프레임 영역 정중앙에 배치된 버튼 제어 영역 */}
-          <div
-            style={{
-              width: '100%',
-              height: 72,
-              display: 'flex',
-              justifyContent: 'center',
-              alignItems: 'center',
-              flexShrink: 0,
-            }}
-          >
-            <div style={{ width: '40%' }}>
+          <div className="w-full h-[64px] flex justify-center items-center shrink-0">
+            <div className="w-2/5">
               <Button
                 variant="primary"
-                size="sm"
+                size="md"
                 fullWidth
                 onClick={handleRetake}
-                style={{
-                  backgroundColor: APP_COLORS.primary[400],
-                  color: APP_COLORS.gray[900],
-                  border: 'none',
-                  fontWeight: 700,
-                  borderRadius: 12,
-                  fontSize: '13px',
-                }}
               >
                 다시 촬영하기
               </Button>
@@ -146,45 +84,11 @@ export const FilmingTaggingScreen: React.FC = () => {
         </div>
 
         {/* 안내 텍스트 */}
-        <span
-          style={{
-            fontSize: 12,
-            fontWeight: 400,
-            color: APP_COLORS.gray[700],
-            textAlign: 'center',
-            marginTop: 6,
-          }}
-        >
+        <span className="text-xs font-normal text-gray-700 text-center">
           태깅을 길게 눌러 수정할 수 있습니다.
         </span>
-      </main>
-
-      {/* 하단 고정 다음 버튼 컴포넌트 */}
-      <footer
-        style={{
-          flexShrink: 0,
-          width: '100%',
-          padding: '12px 20px 28px 20px',
-          backgroundColor: '#FFFFFF',
-          boxSizing: 'border-box',
-        }}
-      >
-        <Button
-          variant="primary"
-          size="lg"
-          fullWidth
-          onClick={handleNext}
-          style={{
-            backgroundColor: APP_COLORS.secondary[400],
-            color: APP_COLORS.gray[900],
-            border: 'none',
-            fontWeight: 700,
-          }}
-        >
-          다음
-        </Button>
-      </footer>
-    </div>
+      </div>
+    </ScreenLayout>
   );
 };
 

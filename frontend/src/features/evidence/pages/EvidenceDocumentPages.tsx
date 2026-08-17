@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { APP_COLORS } from '@/core/theme';
 import { ScreenLayout } from '@/common/layout/ScreenLayout';
-// 🔥 분리된 EvidenceItemButton 컴포넌트를 올바른 경로로 import 합니다.
 import { EvidenceItemButton } from '@/common/components/Button/EvidenceItemButton';
 import { SavedDocumentList, Button } from '@/common/components';
 import GreenModal from '@/common/components/GreenModal';
@@ -32,7 +31,7 @@ export const EvidenceExtractionEditPage: React.FC = () => {
         variant="outline"
         size="lg"
         onClick={() => navigate(-1)}
-        style={{ flex: 1, height: 42 }}
+        style={{ flex: 1 }}// height: 42 }}
       >
         취소
       </Button>
@@ -40,7 +39,7 @@ export const EvidenceExtractionEditPage: React.FC = () => {
         variant="secondary"
         size="lg"
         onClick={() => navigate(-1)}
-        style={{ flex: 1, height: 42 }}
+        style={{ flex: 1 }}//height: 42 }}
       >
         확인
       </Button>
@@ -163,7 +162,7 @@ export const EvidenceExtractionResultPage: React.FC = () => {
         variant="outline"
         size="lg"
         onClick={() => navigate('/evidence-documents/extraction-edit')}
-        style={{ flex: 1, height: 42 }}
+        style={{ flex: 1}}//, height: 42 }}
       >
         수정
       </Button>
@@ -171,7 +170,7 @@ export const EvidenceExtractionResultPage: React.FC = () => {
         variant="secondary"
         size="lg"
         onClick={() => setIsModalOpen(true)}
-        style={{ flex: 1, height: 42 }}
+        style={{ flex: 1}}//, height: 42 }}
       >
         저장
       </Button>
@@ -249,7 +248,7 @@ export const EvidenceExtractionResultPage: React.FC = () => {
         description="저장된 문서는 문서 목록에서 확인할 수 있습니다."
         confirmText="저장"
         cancelText="취소"
-        onConfirm={() => navigate('/evidence/documents')}
+        onConfirm={() => navigate('/evidence')}
         onCancel={() => setIsModalOpen(false)}
       />
     </>

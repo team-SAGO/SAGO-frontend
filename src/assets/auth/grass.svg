@@ -1,0 +1,80 @@
+<svg width="402" height="404" viewBox="0 0 402 404" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <g filter="url(#filter0_g_236_4175)">
+    <path d="M360.5 5C398.332 5 429 57.3827 429 122C429 149.644 423.386 175.049 414 195.071V412.259H-22V182.259H-18.2266C-24.4303 164.658 -28 144.041 -28 122C-28 57.3827 2.6685 5 40.5 5C55.4312 5 69.2454 13.1607 80.5 27.0117C91.7546 13.1607 105.569 5 120.5 5C135.431 5 149.245 13.1607 160.5 27.0117C171.755 13.1607 185.569 5 200.5 5C215.431 5 229.245 13.1607 240.5 27.0117C251.755 13.1607 265.569 5 280.5 5C295.431 5 309.245 13.1607 320.5 27.0117C331.755 13.1607 345.569 5 360.5 5Z" fill="url(#paint0_linear_236_4175)"/>
+  </g>
+  <g filter="url(#filter1_g_236_4175)">
+    <path d="M51 310.5C51 310.5 59.4544 291.824 66 293C72.5456 294.175 77 306 77 306C77 306 82.3496 298.219 87.5 298C92.6504 297.78 99.5 310.5 99.5 310.5" stroke="#04854F" stroke-width="3"/>
+  </g>
+  <g filter="url(#filter2_g_236_4175)">
+    <path d="M311 360.553C311 360.553 319.454 341.877 326 343.053C332.546 344.229 337 356.053 337 356.053C337 356.053 342.35 348.273 347.5 348.053C352.65 347.833 359.5 360.553 359.5 360.553" stroke="#04854F" stroke-width="3"/>
+  </g>
+  <g filter="url(#filter3_g_236_4175)">
+    <path d="M203 255C203 255 196.55 240.105 191.557 241.042C186.563 241.98 183.165 251.411 183.165 251.411C183.165 251.411 179.084 245.206 175.155 245.03C171.225 244.855 166 255 166 255" stroke="#04854F" stroke-width="3"/>
+  </g>
+  <g filter="url(#filter4_g_236_4175)">
+    <path d="M79 138C79 138 72.5503 123.105 67.5567 124.042C62.5631 124.98 59.1649 134.411 59.1649 134.411C59.1649 134.411 55.0838 128.206 51.1546 128.03C47.2255 127.855 42 138 42 138" stroke="#04854F" stroke-width="3"/>
+  </g>
+  <g filter="url(#filter5_g_236_4175)">
+    <path d="M336 100.553C336 100.553 344.454 81.8774 351 83.0533C357.546 84.2292 362 96.0533 362 96.0533C362 96.0533 367.35 88.2732 372.5 88.0533C377.65 87.8334 384.5 100.553 384.5 100.553" stroke="#04854F" stroke-width="3"/>
+  </g>
+  <defs>
+    <filter id="filter0_g_236_4175" x="-33" y="0" width="467" height="417.259" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+      <feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
+      <feTurbulence type="fractalNoise" baseFrequency="0.5 0.5" numOctaves="3" seed="2564" />
+      <feDisplacementMap in="shape" scale="10" xChannelSelector="R" yChannelSelector="G" result="displacedImage" width="100%" height="100%" />
+      <feMerge result="effect1_texture_236_4175">
+        <feMergeNode in="displacedImage"/>
+      </feMerge>
+    </filter>
+    <filter id="filter1_g_236_4175" x="47.6338" y="289.445" width="55.1865" height="23.7656" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+      <feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
+      <feTurbulence type="fractalNoise" baseFrequency="0.5 0.5" numOctaves="3" seed="488" />
+      <feDisplacementMap in="shape" scale="4" xChannelSelector="R" yChannelSelector="G" result="displacedImage" width="100%" height="100%" />
+      <feMerge result="effect1_texture_236_4175">
+        <feMergeNode in="displacedImage"/>
+      </feMerge>
+    </filter>
+    <filter id="filter2_g_236_4175" x="307.634" y="339.499" width="55.1865" height="23.7656" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+      <feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
+      <feTurbulence type="fractalNoise" baseFrequency="0.5 0.5" numOctaves="3" seed="488" />
+      <feDisplacementMap in="shape" scale="4" xChannelSelector="R" yChannelSelector="G" result="displacedImage" width="100%" height="100%" />
+      <feMerge result="effect1_texture_236_4175">
+        <feMergeNode in="displacedImage"/>
+      </feMerge>
+    </filter>
+    <filter id="filter3_g_236_4175" x="162.667" y="237.499" width="43.7095" height="20.1885" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+      <feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
+      <feTurbulence type="fractalNoise" baseFrequency="0.5 0.5" numOctaves="3" seed="488" />
+      <feDisplacementMap in="shape" scale="4" xChannelSelector="R" yChannelSelector="G" result="displacedImage" width="100%" height="100%" />
+      <feMerge result="effect1_texture_236_4175">
+        <feMergeNode in="displacedImage"/>
+      </feMerge>
+    </filter>
+    <filter id="filter4_g_236_4175" x="38.667" y="120.499" width="43.7095" height="20.1885" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+      <feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
+      <feTurbulence type="fractalNoise" baseFrequency="0.5 0.5" numOctaves="3" seed="488" />
+      <feDisplacementMap in="shape" scale="4" xChannelSelector="R" yChannelSelector="G" result="displacedImage" width="100%" height="100%" />
+      <feMerge result="effect1_texture_236_4175">
+        <feMergeNode in="displacedImage"/>
+      </feMerge>
+    </filter>
+    <filter id="filter5_g_236_4175" x="332.634" y="79.499" width="55.1865" height="23.7656" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+      <feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
+      <feTurbulence type="fractalNoise" baseFrequency="0.5 0.5" numOctaves="3" seed="488" />
+      <feDisplacementMap in="shape" scale="4" xChannelSelector="R" yChannelSelector="G" result="displacedImage" width="100%" height="100%" />
+      <feMerge result="effect1_texture_236_4175">
+        <feMergeNode in="displacedImage"/>
+      </feMerge>
+    </filter>
+    <linearGradient id="paint0_linear_236_4175" x1="200.5" y1="5" x2="200.5" y2="412" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#13B16F"/>
+      <stop offset="1" stop-color="#04854F"/>
+    </linearGradient>
+  </defs>
+</svg>

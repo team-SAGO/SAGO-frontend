@@ -1,13 +1,39 @@
-function App() {
+/*
+*/
+//프리뷰 화면
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Preview from "./dev/Preview";
+import { PreviewRoutes } from "./dev/router";
+
+export default function App() {
+  const isIframe = window.location.pathname.startsWith("/view");
+
   return (
-    <div className="flex min-h-screen flex-col items-center justify-center gap-4 bg-slate-50 text-slate-800">
-      <h1 className="text-4xl font-bold tracking-tight">🛵 SAGO</h1>
-      <p className="text-slate-500">이륜차 사고 대응 서비스 — 프론트엔드</p>
-      <p className="rounded-lg bg-white px-4 py-2 text-sm shadow">
-        Tailwind + React + Vite + TS 준비 완료
-      </p>
-    </div>
-  )
+    <BrowserRouter basename={isIframe ? "/view" : ""}>
+      <Routes>
+        {isIframe ? (
+          <Route path="/*" element={<PreviewRoutes />} />
+        ) : (
+          <Route path="/*" element={<Preview />} />
+        )}
+      </Routes>
+    </BrowserRouter>
+  );
 }
 
-export default App
+/*
+//실제 화면
+import React from 'react';
+import { BrowserRouter } from 'react-router-dom';
+import Routes from '@/core/routes/router';
+
+export function App() {
+  return (
+    <BrowserRouter>
+      <Routes />
+    </BrowserRouter>
+  );
+}
+
+export default App;
+*/

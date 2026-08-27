@@ -1,0 +1,20 @@
+<svg preserveAspectRatio="none" overflow="visible" style="display: block;" width="467" height="657.259" viewBox="0 0 467 657.259" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="Union" filter="url(#filter0_g_0_71)">
+<path d="M393.5 5C431.332 5 462 57.3827 462 122C462 146.558 457.569 169.348 450 188.168V652.259H11V182.259H14.7734C8.56974 164.658 5 144.041 5 122C5 57.3827 35.6685 5 73.5 5C88.4312 5 102.245 13.1607 113.5 27.0117C124.755 13.1607 138.569 5 153.5 5C168.431 5 182.245 13.1607 193.5 27.0117C204.755 13.1607 218.569 5 233.5 5C248.431 5 262.245 13.1607 273.5 27.0117C284.755 13.1607 298.569 5 313.5 5C328.431 5 342.245 13.1607 353.5 27.0117C364.755 13.1607 378.569 5 393.5 5Z" fill="url(#paint0_linear_0_71)"/>
+</g>
+<defs>
+<filter id="filter0_g_0_71" x="0" y="0" width="467" height="657.259" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
+<feTurbulence type="fractalNoise" baseFrequency="0.5 0.5" numOctaves="3" seed="2564" />
+<feDisplacementMap in="shape" scale="10" xChannelSelector="R" yChannelSelector="G" result="displacedImage" width="100%" height="100%" />
+<feMerge result="effect1_texture_0_71">
+<feMergeNode in="displacedImage"/>
+</feMerge>
+</filter>
+<linearGradient id="paint0_linear_0_71" x1="233.5" y1="5" x2="234" y2="632.759" gradientUnits="userSpaceOnUse">
+<stop stop-color="#13B16F"/>
+<stop offset="1" stop-color="#04854F"/>
+</linearGradient>
+</defs>
+</svg>

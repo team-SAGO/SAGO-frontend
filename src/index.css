@@ -1,13 +1,158 @@
+@import "pretendard/dist/web/variable/pretendardvariable.css";
 @import "tailwindcss";
 
 :root {
-  font-family: system-ui, -apple-system, "Segoe UI", Roboto,
-    "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
+  font-family: "Pretendard Variable", Pretendard, system-ui, -apple-system,
+    "Segoe UI", Roboto, "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
+  color: #ffffff;
+  background: #073c2a;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+}
+
+* {
+  box-sizing: border-box;
 }
 
 html,
 body,
 #root {
-  height: 100%;
+  min-height: 100%;
   margin: 0;
+}
+
+button,
+input,
+textarea,
+select {
+  font-family: inherit;
+}
+
+.sago-screen {
+  container-type: inline-size;
+  position: relative;
+  isolation: isolate;
+  width: min(100vw, 45.9954svh, 402px);
+  aspect-ratio: 402 / 874;
+  overflow: hidden;
+  background: radial-gradient(
+    ellipse 167.18% 38.9% at 50% 56.03%,
+    #e4fdff 0%,
+    #b0f8ff 100%
+  );
+}
+
+.plain-screen {
+  background: #fdffff;
+}
+
+.sago-progress {
+  border-radius: 999px;
+  background: conic-gradient(
+    from 35deg,
+    rgba(243, 255, 250, 0.95) 0deg 88deg,
+    #69ffc0 88deg 360deg
+  );
+  -webkit-mask: radial-gradient(
+    farthest-side,
+    transparent calc(100% - 4px),
+    #000 calc(100% - 3.5px)
+  );
+  mask: radial-gradient(
+    farthest-side,
+    transparent calc(100% - 4px),
+    #000 calc(100% - 3.5px)
+  );
+  animation: sago-progress-spin 900ms linear infinite;
+}
+
+@keyframes sago-progress-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.sago-waveform-track {
+  animation: sago-waveform-travel 2800ms linear infinite;
+  animation-play-state: paused;
+  will-change: transform;
+}
+
+.sago-waveform-track-running {
+  animation-play-state: running;
+}
+
+.sago-statement-waveform-track {
+  animation: sago-statement-waveform-travel 2200ms linear infinite;
+  animation-play-state: paused;
+  transform: translateX(-50%);
+  will-change: transform;
+}
+
+.sago-statement-waveform-track-running {
+  animation-play-state: running;
+}
+
+.sago-linked-scroll-panel {
+  overflow-y: scroll;
+  overscroll-behavior: contain;
+  scrollbar-color: #cecfd1 #f0f1f1;
+  scrollbar-gutter: stable;
+  scrollbar-width: thin;
+  touch-action: pan-y;
+  -webkit-overflow-scrolling: touch;
+}
+
+.sago-linked-scroll-panel::-webkit-scrollbar {
+  width: 6px;
+}
+
+.sago-linked-scroll-panel::-webkit-scrollbar-track {
+  border-radius: 999px;
+  background: #f0f1f1;
+}
+
+.sago-linked-scroll-panel::-webkit-scrollbar-thumb {
+  min-height: 24px;
+  border: 1px solid #f0f1f1;
+  border-radius: 999px;
+  background: #cecfd1;
+}
+
+.sago-linked-scroll-panel::-webkit-scrollbar-thumb:hover {
+  background: #aeb1b4;
+}
+
+@keyframes sago-waveform-travel {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes sago-statement-waveform-travel {
+  from {
+    transform: translateX(-50%);
+  }
+
+  to {
+    transform: translateX(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sago-progress {
+    animation-duration: 2400ms;
+  }
+
+  .sago-waveform-track {
+    animation-duration: 5600ms;
+  }
+
+  .sago-statement-waveform-track {
+    animation-duration: 4400ms;
+  }
 }
